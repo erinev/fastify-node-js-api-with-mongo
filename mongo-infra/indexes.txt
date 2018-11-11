@@ -1,0 +1,2 @@
+# index for search by name
+    db.Banners.createIndex( { name: "text" } )

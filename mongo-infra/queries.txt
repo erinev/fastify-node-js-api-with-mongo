@@ -1,0 +1,5 @@
+# Query by text index (not so slow as regex, but still slower)
+    const sameNameBanner = await bannersCollection
+        .find({ $text: { $search: request.body.name, $caseSensitive: false } })
+        .limit(1)
+        .toArray();
