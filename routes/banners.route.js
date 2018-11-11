@@ -22,7 +22,7 @@ function mapMongoItemToDto (mongoItem) {
 
 module.exports = async function (fastify) {
   const database = fastify.mongo.db(process.env.MONGO_DATABASE_NAME);
-  const bannersCollection = database.collection(process.env.MONGO_COLLECTION_NAME);
+  const bannersCollection = database.collection(process.env.MONGO_BANNERS_COLLECTION_NAME);
 
   fastify.get('/banners', { getBannersSchema }, async function (request, reply) {
     let banners = await bannersCollection.find().toArray();
