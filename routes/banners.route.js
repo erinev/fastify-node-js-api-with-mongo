@@ -20,7 +20,7 @@ function mapMongoItemToDto (mongoItem) {
   return dto;
 }
 
-module.exports = async function (fastify, options) {
+module.exports = async function (fastify) {
   const database = fastify.mongo.db(process.env.MONGO_DATABASE_NAME);
   const bannersCollection = database.collection(process.env.MONGO_COLLECTION_NAME);
 
@@ -38,7 +38,7 @@ module.exports = async function (fastify, options) {
     const foundBanner = await bannersCollection.findOne({ _id });
 
     if (foundBanner === null) {
-        throw new Error(`Banner with id '${request.params.id}' was not found`);
+      throw new Error(`Banner with id '${request.params.id}' was not found`);
     }
 
     reply.code(200);
@@ -55,7 +55,7 @@ module.exports = async function (fastify, options) {
       throw new Error(`Banner with name '${request.body.name}' already exists`);
     }
 
-    const dateTimeNow = new Date().toLocaleString("lt-LT");
+    const dateTimeNow = new Date().toLocaleString('lt-LT');
     const newBannerDocument = {
       ...request.body,
       upperCasedName: upperCasedBannerName,

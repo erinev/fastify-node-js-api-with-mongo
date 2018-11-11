@@ -4,7 +4,7 @@ const createBannerSchema = {
       type: 'object',
       properties: {
         name: { type: 'string' },
-        bannerType: { type: 'string', "enum": ["Image", "Flash"] },
+        bannerType: { type: 'string', 'enum': ['Image', 'Flash'] },
         size: {
           type: 'object',
           properties: {
@@ -22,7 +22,7 @@ const createBannerSchema = {
         properties: {
           id: { type: 'string' },
           name: { type: 'string' },
-          bannerType: { type: 'string', "enum": ["Image", "Flash"] },
+          bannerType: { type: 'string', 'enum': ['Image', 'Flash'] },
           size: {
             type: 'object',
             properties: {
