@@ -3,7 +3,7 @@
 const fastifyPlugin = require('fastify-plugin');
 const MongoClient = require('mongodb').MongoClient;
 
-async function mongoDbConnector (fastify, options, next) {
+async function mongoDbConnector (fastify) {
   const mongoOptions = {
     useNewUrlParser: true
   };

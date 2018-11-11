@@ -1,28 +1,28 @@
 const getBannerByIdSchema = {
   schema: {
     params: {
-      type: "object",
+      type: 'object',
       properties: {
-        id: { type: "string" }
+        id: { type: 'string' }
       }
     },
     response: {
       200: {
-        type: "object",
+        type: 'object',
         properties: {
-          id: { type: "string" },
-          name: { type: "string" },
-          bannerType: { type: "string", enum: ["Image", "Flash"] },
+          id: { type: 'string' },
+          name: { type: 'string' },
+          bannerType: { type: 'string', enum: ['Image', 'Flash'] },
           size: {
-            type: "object",
+            type: 'object',
             properties: {
-              width: { type: "number" },
-              height: { type: "number" }
+              width: { type: 'number' },
+              height: { type: 'number' }
             }
           },
-          active: { type: "boolean" },
-          createdAt: { type: "string" },
-          updatedAt: { type: "string" }
+          active: { type: 'boolean' },
+          createdAt: { type: 'string' },
+          updatedAt: { type: 'string' }
         }
       }
     }

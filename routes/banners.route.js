@@ -16,13 +16,13 @@ function mapMongoItemToDto (mongoItem) {
 
   delete dto._id;
   delete dto.upperCasedName;
-  
+
   return dto;
 }
 
 module.exports = async function (fastify, options) {
-  const database = fastify.mongo.db('NodeJsRestApi');
-  const bannersCollection = database.collection('Banners');
+  const database = fastify.mongo.db(process.env.MONGO_DATABASE_NAME);
+  const bannersCollection = database.collection(process.env.MONGO_COLLECTION_NAME);
 
   fastify.get('/banners', { getBannersSchema }, async function (request, reply) {
     let banners = await bannersCollection.find().toArray();
@@ -54,7 +54,7 @@ module.exports = async function (fastify, options) {
     if (bannerWithSameName !== null) {
       throw new Error(`Banner with name '${request.body.name}' already exists`);
     }
-    
+
     const dateTimeNow = new Date().toLocaleString("lt-LT");
     const newBannerDocument = {
       ...request.body,
