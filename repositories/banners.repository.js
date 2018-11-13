@@ -17,10 +17,7 @@ function MapMongoItemToDto(mongoItem) {
 }
 
 module.exports = {
-  getBanners: async function(fastify, offset = 0, limit = 100) {
-    const database = fastify.mongo.db(process.env.MONGO_DATABASE_NAME);
-    const bannersCollection = database.collection(process.env.MONGO_BANNERS_COLLECTION_NAME);
-
+  getBanners: async function(bannersCollection, offset = 0, limit = 100) {
     let banners = await bannersCollection
       .find()
       .skip(offset)
@@ -29,10 +26,7 @@ module.exports = {
 
     return banners.map(MapMongoItemToDto);
   },
-  getBannerById: async function(fastify, bannerId) {
-    const database = fastify.mongo.db(process.env.MONGO_DATABASE_NAME);
-    const bannersCollection = database.collection(process.env.MONGO_BANNERS_COLLECTION_NAME);
-
+  getBannerById: async function(bannersCollection, bannerId) {
     const _id = new MongoObjectId(bannerId);
 
     const foundBanner = await bannersCollection.findOne({ _id });
@@ -46,10 +40,7 @@ module.exports = {
 
     return MapMongoItemToDto(foundBanner);
   },
-  createBanner: async function(fastify, newBanner) {
-    const database = fastify.mongo.db(process.env.MONGO_DATABASE_NAME);
-    const bannersCollection = database.collection(process.env.MONGO_BANNERS_COLLECTION_NAME);
-
+  createBanner: async function(bannersCollection, newBanner) {
     const upperCasedBannerName = newBanner.name.toUpperCase();
 
     const bannerWithSameName = await bannersCollection.findOne({ upperCasedName: upperCasedBannerName });
